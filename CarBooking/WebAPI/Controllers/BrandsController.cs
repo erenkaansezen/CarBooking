@@ -1,5 +1,6 @@
 ﻿using Application.Features.CQRS.Commands.BrandCommands;
 using Application.Features.CQRS.Handlers.BrandHandlers;
+using Application.Features.CQRS.Queries.BrandQueries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,7 +32,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBrand(int id)
         {
-            var result = await _getBrandByIdQueryHandler.Handle(new GetBrandByIdQueryHandler(id));
+            var result = await _getBrandByIdQueryHandler.Handle(new GetBrandByIdQuery(id));
             return Ok(result);
         }
         [HttpPost]

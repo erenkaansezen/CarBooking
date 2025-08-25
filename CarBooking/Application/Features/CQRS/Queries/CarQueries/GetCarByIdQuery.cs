@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.CQRS.Queries.BrandQueries
+namespace Application.Features.CQRS.Queries.CarQueries
 {
-    public class GetBrandByIdQuery
+    public class GetCarByIdQuery
     {
         public int Id { get; set; }
-
-        public GetBrandByIdQuery(int id)
+        public GetCarByIdQuery(int id)
         {
             Id = id;
         }

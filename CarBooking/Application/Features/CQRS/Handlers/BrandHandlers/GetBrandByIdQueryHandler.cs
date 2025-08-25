@@ -1,4 +1,5 @@
 ﻿using Application.Features.CQRS.Queries.BannerQueries;
+using Application.Features.CQRS.Queries.BrandQueries;
 using Application.Features.CQRS.Result.BannerResults;
 using Application.Features.CQRS.Result.BrandResults;
 using Application.Interfaces;
@@ -18,7 +19,7 @@ namespace Application.Features.CQRS.Handlers.BrandHandlers
         {
             _repository = repository;
         }
-        public async Task<GetBrandByIdQueryResult> Handle(GetBannerByIdQuery query)
+        public async Task<GetBrandByIdQueryResult> Handle(GetBrandByIdQuery query)
         {
             var value = await _repository.GetByIdAsync(query.Id);
             return new GetBrandByIdQueryResult
