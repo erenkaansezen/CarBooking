@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Web.Domain.Entities
+namespace Application.Features.CQRS.Result.BannerResults
 {
-    public class Banner
+    public class GetBannerQueryResult
     {
         public int BannerId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string VideoDescription { get; set; }
         public string VideoUrl { get; set; }
-
-
     }
 }

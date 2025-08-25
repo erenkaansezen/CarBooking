@@ -14,21 +14,21 @@ namespace Web.Persistence.Context
         {
             optionsBuilder.UseSqlServer("Server=Sezen;initial Catalog=WebSezenCoRentACar;integrated Security=true;TrustServerCertificate=True");
         }
-        public DbSet<About> abouts { get; set; }
-        public DbSet<Banner> banners { get; set; }
-        public DbSet<Brand> brands { get; set; }
-        public DbSet<Car> cars { get; set; }
-        public DbSet<CarDescription> carDescriptions { get; set; }
-        public DbSet<CarFeature> carFeatures { get; set; }
-        public DbSet<CarPricing> carPricings { get; set; }
-        public DbSet<Category> categories { get; set; }
-        public DbSet<Contact> contacts { get; set; }
-        public DbSet<Feature> features { get; set; }
-        public DbSet<FooterAddress> footerAddresses { get; set; }
-        public DbSet<Location> locations { get; set; }
-        public DbSet<Pricing> pricings { get; set; }
-        public DbSet<Service> services { get; set; }
-        public DbSet<SocialMedia> socialMedias { get; set; }
-        public DbSet<Testimonial> testimonials { get; set; }
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<Banner> Banners { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<CarDescription> CarDescriptions { get; set; }
+        public DbSet<CarFeature> CarFeatures { get; set; }
+        public DbSet<CarPricing> CarPricings { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Feature> Features { get; set; }
+        public DbSet<FooterAddress> FooterAddresses { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Pricing> Pricings { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<SocialMedia> SocialMedias { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
     }
 }

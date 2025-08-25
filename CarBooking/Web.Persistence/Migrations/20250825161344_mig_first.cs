@@ -12,7 +12,7 @@ namespace Web.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "abouts",
+                name: "Abouts",
                 columns: table => new
                 {
                     AboutID = table.Column<int>(type: "int", nullable: false)
@@ -23,26 +23,27 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_abouts", x => x.AboutID);
+                    table.PrimaryKey("PK_Abouts", x => x.AboutID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "banners",
+                name: "Banners",
                 columns: table => new
                 {
                     BannerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    VideoDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    VideoDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_banners", x => x.BannerId);
+                    table.PrimaryKey("PK_Banners", x => x.BannerId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "brands",
+                name: "Brands",
                 columns: table => new
                 {
                     BrandID = table.Column<int>(type: "int", nullable: false)
@@ -51,11 +52,11 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_brands", x => x.BrandID);
+                    table.PrimaryKey("PK_Brands", x => x.BrandID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "categories",
+                name: "Categories",
                 columns: table => new
                 {
                     CategoryID = table.Column<int>(type: "int", nullable: false)
@@ -64,11 +65,11 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_categories", x => x.CategoryID);
+                    table.PrimaryKey("PK_Categories", x => x.CategoryID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "contacts",
+                name: "Contacts",
                 columns: table => new
                 {
                     ContactID = table.Column<int>(type: "int", nullable: false)
@@ -81,11 +82,11 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_contacts", x => x.ContactID);
+                    table.PrimaryKey("PK_Contacts", x => x.ContactID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "features",
+                name: "Features",
                 columns: table => new
                 {
                     FeatureID = table.Column<int>(type: "int", nullable: false)
@@ -94,11 +95,11 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_features", x => x.FeatureID);
+                    table.PrimaryKey("PK_Features", x => x.FeatureID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "footerAddresses",
+                name: "FooterAddresses",
                 columns: table => new
                 {
                     FooterAddressID = table.Column<int>(type: "int", nullable: false)
@@ -110,11 +111,11 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_footerAddresses", x => x.FooterAddressID);
+                    table.PrimaryKey("PK_FooterAddresses", x => x.FooterAddressID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "locations",
+                name: "Locations",
                 columns: table => new
                 {
                     LocationID = table.Column<int>(type: "int", nullable: false)
@@ -123,11 +124,11 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_locations", x => x.LocationID);
+                    table.PrimaryKey("PK_Locations", x => x.LocationID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "pricings",
+                name: "Pricings",
                 columns: table => new
                 {
                     PricingID = table.Column<int>(type: "int", nullable: false)
@@ -136,11 +137,11 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_pricings", x => x.PricingID);
+                    table.PrimaryKey("PK_Pricings", x => x.PricingID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "services",
+                name: "Services",
                 columns: table => new
                 {
                     ServiceID = table.Column<int>(type: "int", nullable: false)
@@ -151,11 +152,11 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_services", x => x.ServiceID);
+                    table.PrimaryKey("PK_Services", x => x.ServiceID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "socialMedias",
+                name: "SocialMedias",
                 columns: table => new
                 {
                     SocialMediaID = table.Column<int>(type: "int", nullable: false)
@@ -166,11 +167,11 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_socialMedias", x => x.SocialMediaID);
+                    table.PrimaryKey("PK_SocialMedias", x => x.SocialMediaID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "testimonials",
+                name: "Testimonials",
                 columns: table => new
                 {
                     TestimonialID = table.Column<int>(type: "int", nullable: false)
@@ -182,11 +183,11 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_testimonials", x => x.TestimonialID);
+                    table.PrimaryKey("PK_Testimonials", x => x.TestimonialID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "cars",
+                name: "Cars",
                 columns: table => new
                 {
                     CarID = table.Column<int>(type: "int", nullable: false)
@@ -203,17 +204,17 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_cars", x => x.CarID);
+                    table.PrimaryKey("PK_Cars", x => x.CarID);
                     table.ForeignKey(
-                        name: "FK_cars_brands_BrandID",
+                        name: "FK_Cars_Brands_BrandID",
                         column: x => x.BrandID,
-                        principalTable: "brands",
+                        principalTable: "Brands",
                         principalColumn: "BrandID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "carDescriptions",
+                name: "CarDescriptions",
                 columns: table => new
                 {
                     CarDescriptionID = table.Column<int>(type: "int", nullable: false)
@@ -223,17 +224,17 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_carDescriptions", x => x.CarDescriptionID);
+                    table.PrimaryKey("PK_CarDescriptions", x => x.CarDescriptionID);
                     table.ForeignKey(
-                        name: "FK_carDescriptions_cars_CarID",
+                        name: "FK_CarDescriptions_Cars_CarID",
                         column: x => x.CarID,
-                        principalTable: "cars",
+                        principalTable: "Cars",
                         principalColumn: "CarID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "carFeatures",
+                name: "CarFeatures",
                 columns: table => new
                 {
                     CarFeatureID = table.Column<int>(type: "int", nullable: false)
@@ -244,23 +245,23 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_carFeatures", x => x.CarFeatureID);
+                    table.PrimaryKey("PK_CarFeatures", x => x.CarFeatureID);
                     table.ForeignKey(
-                        name: "FK_carFeatures_cars_CarID",
+                        name: "FK_CarFeatures_Cars_CarID",
                         column: x => x.CarID,
-                        principalTable: "cars",
+                        principalTable: "Cars",
                         principalColumn: "CarID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_carFeatures_features_FeatureID",
+                        name: "FK_CarFeatures_Features_FeatureID",
                         column: x => x.FeatureID,
-                        principalTable: "features",
+                        principalTable: "Features",
                         principalColumn: "FeatureID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "carPricings",
+                name: "CarPricings",
                 columns: table => new
                 {
                     CarPricingID = table.Column<int>(type: "int", nullable: false)
@@ -271,49 +272,49 @@ namespace Web.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_carPricings", x => x.CarPricingID);
+                    table.PrimaryKey("PK_CarPricings", x => x.CarPricingID);
                     table.ForeignKey(
-                        name: "FK_carPricings_cars_CarID",
+                        name: "FK_CarPricings_Cars_CarID",
                         column: x => x.CarID,
-                        principalTable: "cars",
+                        principalTable: "Cars",
                         principalColumn: "CarID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_carPricings_pricings_PricingID",
+                        name: "FK_CarPricings_Pricings_PricingID",
                         column: x => x.PricingID,
-                        principalTable: "pricings",
+                        principalTable: "Pricings",
                         principalColumn: "PricingID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_carDescriptions_CarID",
-                table: "carDescriptions",
+                name: "IX_CarDescriptions_CarID",
+                table: "CarDescriptions",
                 column: "CarID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_carFeatures_CarID",
-                table: "carFeatures",
+                name: "IX_CarFeatures_CarID",
+                table: "CarFeatures",
                 column: "CarID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_carFeatures_FeatureID",
-                table: "carFeatures",
+                name: "IX_CarFeatures_FeatureID",
+                table: "CarFeatures",
                 column: "FeatureID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_carPricings_CarID",
-                table: "carPricings",
+                name: "IX_CarPricings_CarID",
+                table: "CarPricings",
                 column: "CarID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_carPricings_PricingID",
-                table: "carPricings",
+                name: "IX_CarPricings_PricingID",
+                table: "CarPricings",
                 column: "PricingID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_cars_BrandID",
-                table: "cars",
+                name: "IX_Cars_BrandID",
+                table: "Cars",
                 column: "BrandID");
         }
 
@@ -321,52 +322,52 @@ namespace Web.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "abouts");
+                name: "Abouts");
 
             migrationBuilder.DropTable(
-                name: "banners");
+                name: "Banners");
 
             migrationBuilder.DropTable(
-                name: "carDescriptions");
+                name: "CarDescriptions");
 
             migrationBuilder.DropTable(
-                name: "carFeatures");
+                name: "CarFeatures");
 
             migrationBuilder.DropTable(
-                name: "carPricings");
+                name: "CarPricings");
 
             migrationBuilder.DropTable(
-                name: "categories");
+                name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "contacts");
+                name: "Contacts");
 
             migrationBuilder.DropTable(
-                name: "footerAddresses");
+                name: "FooterAddresses");
 
             migrationBuilder.DropTable(
-                name: "locations");
+                name: "Locations");
 
             migrationBuilder.DropTable(
-                name: "services");
+                name: "Services");
 
             migrationBuilder.DropTable(
-                name: "socialMedias");
+                name: "SocialMedias");
 
             migrationBuilder.DropTable(
-                name: "testimonials");
+                name: "Testimonials");
 
             migrationBuilder.DropTable(
-                name: "features");
+                name: "Features");
 
             migrationBuilder.DropTable(
-                name: "cars");
+                name: "Cars");
 
             migrationBuilder.DropTable(
-                name: "pricings");
+                name: "Pricings");
 
             migrationBuilder.DropTable(
-                name: "brands");
+                name: "Brands");
         }
     }
 }

@@ -12,7 +12,7 @@ using Web.Persistence.Context;
 namespace Web.Persistence.Migrations
 {
     [DbContext(typeof(WebContext))]
-    [Migration("20250825131509_mig_first")]
+    [Migration("20250825161344_mig_first")]
     partial class mig_first
     {
         /// <inheritdoc />
@@ -47,7 +47,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("AboutID");
 
-                    b.ToTable("abouts");
+                    b.ToTable("Abouts");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Banner", b =>
@@ -70,9 +70,13 @@ namespace Web.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("VideoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("BannerId");
 
-                    b.ToTable("banners");
+                    b.ToTable("Banners");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Brand", b =>
@@ -89,7 +93,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("BrandID");
 
-                    b.ToTable("brands");
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Car", b =>
@@ -136,7 +140,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasIndex("BrandID");
 
-                    b.ToTable("cars");
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.CarDescription", b =>
@@ -158,7 +162,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasIndex("CarID");
 
-                    b.ToTable("carDescriptions");
+                    b.ToTable("CarDescriptions");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.CarFeature", b =>
@@ -184,7 +188,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasIndex("FeatureID");
 
-                    b.ToTable("carFeatures");
+                    b.ToTable("CarFeatures");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.CarPricing", b =>
@@ -210,7 +214,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasIndex("PricingID");
 
-                    b.ToTable("carPricings");
+                    b.ToTable("CarPricings");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Category", b =>
@@ -227,7 +231,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("CategoryID");
 
-                    b.ToTable("categories");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Contact", b =>
@@ -259,7 +263,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("ContactID");
 
-                    b.ToTable("contacts");
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Feature", b =>
@@ -276,7 +280,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("FeatureID");
 
-                    b.ToTable("features");
+                    b.ToTable("Features");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.FooterAddress", b =>
@@ -304,7 +308,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("FooterAddressID");
 
-                    b.ToTable("footerAddresses");
+                    b.ToTable("FooterAddresses");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Location", b =>
@@ -321,7 +325,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("LocationID");
 
-                    b.ToTable("locations");
+                    b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Pricing", b =>
@@ -338,7 +342,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("PricingID");
 
-                    b.ToTable("pricings");
+                    b.ToTable("Pricings");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Service", b =>
@@ -363,7 +367,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("ServiceID");
 
-                    b.ToTable("services");
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.SocialMedia", b =>
@@ -388,7 +392,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("SocialMediaID");
 
-                    b.ToTable("socialMedias");
+                    b.ToTable("SocialMedias");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Testimonial", b =>
@@ -417,7 +421,7 @@ namespace Web.Persistence.Migrations
 
                     b.HasKey("TestimonialID");
 
-                    b.ToTable("testimonials");
+                    b.ToTable("Testimonials");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Car", b =>
