@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Features.CQRS.Commands.BannerCommands;
 using Application.Interfaces;
 using Web.Domain.Entities;
 
@@ -15,9 +16,9 @@ namespace Application.Features.CQRS.Handlers.BannerHandlers
         {
             _repository = repository;
         }
-        public async Task Handle(int id)
+        public async Task Handle(RemoveBannerCommand remove)
         {
-            var banner = await _repository.GetByIdAsync(id);
+            var banner = await _repository.GetByIdAsync(remove.Id);
             if (banner != null)
             {
                 await _repository.DeleteAsync(banner);
