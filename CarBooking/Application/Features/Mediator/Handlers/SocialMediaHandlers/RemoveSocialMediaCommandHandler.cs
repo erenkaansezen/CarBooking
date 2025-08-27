@@ -1,5 +1,5 @@
-﻿using Application.Features.Mediator.Commands.PricingCommands;
-using Application.Features.Mediator.Commands.ServiceCommands;
+﻿using Application.Features.Mediator.Commands.ServiceCommands;
+using Application.Features.Mediator.Commands.SocialMediaCommands;
 using Application.Interfaces;
 using MediatR;
 using System;
@@ -9,18 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Web.Domain.Entities;
 
-namespace Application.Features.Mediator.Handlers.ServiceHandlers
+namespace Application.Features.Mediator.Handlers.SocialMediaHandlers
 {
-    public class RemoveServiceCommandHandler : IRequestHandler<RemoveServiceCommand>
+    public class RemoveSocialMediaCommandHandler : IRequestHandler<RemoveSocialMediaCommand>
     {
         private readonly IRepository<Service> _repository;
 
-        public RemoveServiceCommandHandler(IRepository<Service> repository)
+        public RemoveSocialMediaCommandHandler(IRepository<Service> repository)
         {
             _repository = repository;
         }
 
-        public async Task Handle(RemoveServiceCommand request, CancellationToken cancellationToken)
+        public async Task Handle(RemoveSocialMediaCommand request, CancellationToken cancellationToken)
         {
             var Location = await _repository.GetByIdAsync(request.Id);
             if (Location != null)
@@ -30,4 +30,3 @@ namespace Application.Features.Mediator.Handlers.ServiceHandlers
         }
     }
 }
-

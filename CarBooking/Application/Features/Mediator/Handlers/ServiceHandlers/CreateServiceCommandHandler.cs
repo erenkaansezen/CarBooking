@@ -23,7 +23,7 @@ namespace Application.Features.Mediator.Handlers.ServiceHandlers
             Service service = new Service
             {
                 Title = request.Title,
-                Description = request.Description,
+                Description = request.Description,               
                 IconUrl = request.IconUrl
             };
             await _repository.AddAsync(service);
