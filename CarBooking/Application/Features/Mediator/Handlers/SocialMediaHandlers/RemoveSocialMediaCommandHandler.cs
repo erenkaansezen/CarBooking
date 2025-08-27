@@ -22,10 +22,10 @@ namespace Application.Features.Mediator.Handlers.SocialMediaHandlers
 
         public async Task Handle(RemoveSocialMediaCommand request, CancellationToken cancellationToken)
         {
-            var Location = await _repository.GetByIdAsync(request.Id);
-            if (Location != null)
+            var socialMedia = await _repository.GetByIdAsync(request.Id);
+            if (socialMedia != null)
             {
-                await _repository.DeleteAsync(Location);
+                await _repository.DeleteAsync(socialMedia);
             }
         }
     }
