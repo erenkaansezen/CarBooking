@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Web.Dto.AboutDtos;
+using Web.Dto.TestimonialDtos;
 
 namespace Web.UI.ViewComponents.TestimonialViewComponents
 {
@@ -20,7 +21,7 @@ namespace Web.UI.ViewComponents.TestimonialViewComponents
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultAboutDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultTestimonialDto>>(jsonData);
                 return View(values);
             }
             return View();
