@@ -8984,7 +8984,7 @@ h1, h2, h3, h4, h5,
 
 .services-wrap {
   padding: 4em 3em;
-  background: #fff;
+  background: blakc;
   -webkit-box-shadow: 0px 5px 12px -1px rgba(0, 0, 0, 0.03);
   -moz-box-shadow: 0px 5px 12px -1px rgba(0, 0, 0, 0.03);
   box-shadow: 0px 5px 12px -1px rgba(0, 0, 0, 0.03); }
@@ -9012,8 +9012,9 @@ h1, h2, h3, h4, h5,
   height: 110px;
   background: #1089ff;
   border: none; }
-  .services.services-2 .icon span {
-    color: #fff; }
+    .services.services-2 .icon span {
+        color: #212529;
+    }
 
 .ftco-intro {
   background-size: cover;
@@ -9136,8 +9137,10 @@ textarea.form-control {
   font-size: 24px; }
 
 .ftco-section {
-  padding: 6em 0;
-  position: relative; }
+    padding: 6em 0;
+    background-color: #212529;
+    position: relative;
+}
   @media (max-width: 767.98px) {
     .ftco-section {
       padding: 6em 0; } }

@@ -1,27 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Web.Dto.AboutDtos;
+using Web.Dto.ServiceDtos;
 using Web.Dto.TestimonialDtos;
 
-namespace Web.UI.ViewComponents.TestimonialViewComponents
+namespace Web.UI.Controllers
 {
-    public class _TestimonialComponentPartial : ViewComponent
+    public class ServiceController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _TestimonialComponentPartial(IHttpClientFactory httpClientFactory)
+        public ServiceController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7245/api/Testimonials");
+            var response = await client.GetAsync("https://localhost:7245/api/Services");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultTestimonialDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultServiceDto>>(jsonData);
                 return View(values);
             }
             return View();
