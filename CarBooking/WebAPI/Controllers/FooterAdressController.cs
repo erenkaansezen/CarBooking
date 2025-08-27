@@ -1,54 +1,54 @@
-﻿using Application.Features.Mediator.Commands.FooterAdressCommands;
-using Application.Features.Mediator.Queries.FooterAdressQueries;
+﻿using Application.Features.Mediator.Commands.LocaitonCommands;
+using Application.Features.Mediator.Queries.LocationQueries;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FooterAdressController : ControllerBase
+    public class LocationsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public FooterAdressController(IMediator mediator)
+        public LocationsController(IMediator mediator)
         {
             _mediator = mediator;
         }
+
         [HttpGet]
-        public async Task<IActionResult> GetAllAdresses()
+        public async Task<IActionResult> GetAllLocations()
         {
-            var result = await _mediator.Send(new GetFooterAdressQuery());
+            var result = await _mediator.Send(new GetLocationQuery());
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAdressById(int id)
+        public async Task<IActionResult> GetLocationById(int id)
         {
-            var value = await _mediator.Send(new GetFooterAdressByIdQuery(id));
+            var value = await _mediator.Send(new GetLocationByIdQuery(id));
             return Ok(value);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAdress(CreateFooterAdressCommand command)
+        public async Task<IActionResult> CreateLocation(CreateLocationCommand command)
         {
             await _mediator.Send(command);
-            return Ok("Adress eklendi");
+            return Ok("Lokasyon eklendi");
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAdress(UpdateFooterAdressCommand command)
+        public async Task<IActionResult> UpdateLocation(UpdateLocationCommand command)
         {
             await _mediator.Send(command);
-            return Ok("Adress güncellendi");
+            return Ok("Lokasyon güncellendi");
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAdress(int id)
+        public async Task<IActionResult> DeleteLocation(int id)
         {
-            await _mediator.Send(new RemoveFooterAdressCommand(id));
-            return Ok("Adress silindi");
+            await _mediator.Send(new RemoveLocationCommand(id));
+            return Ok("Lokasyon silindi");
         }
     }
 }
