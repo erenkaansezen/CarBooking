@@ -13,9 +13,9 @@ namespace Application.Features.Mediator.Handlers.SocialMediaHandlers
 {
     public class RemoveSocialMediaCommandHandler : IRequestHandler<RemoveSocialMediaCommand>
     {
-        private readonly IRepository<Service> _repository;
+        private readonly IRepository<SocialMedia> _repository;
 
-        public RemoveSocialMediaCommandHandler(IRepository<Service> repository)
+        public RemoveSocialMediaCommandHandler(IRepository<SocialMedia> repository)
         {
             _repository = repository;
         }
