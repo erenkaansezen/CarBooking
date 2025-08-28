@@ -12,6 +12,7 @@ namespace WebAPI.Controllers
         private readonly GetCarQueryHandler _getCarQueryHandler;
         private readonly GetCarByIdQueryHandler _getCarByIdQueryHandler;
         private readonly GetCarWithCarQueryHandler _getCarWithCarQueryHandler;
+        private readonly GetLastFiveCarWithBrandQueryHandler _getLastFiveCarWithBrandQueryHandler;
         private readonly CreateCarCommandHandler _createCarCommandHandler;
         private readonly UpdateCarCommandHandler _updateCarCommandHandler;
         private readonly RemoveCarCommandHandler _removeCarCommandHandler;
@@ -23,7 +24,8 @@ namespace WebAPI.Controllers
             CreateCarCommandHandler createCarCommandHandler,
             UpdateCarCommandHandler updateCarCommandHandler,
             RemoveCarCommandHandler removeCarCommandHandler,
-            GetCarWithCarQueryHandler getCarWithCarQueryHandler)
+            GetCarWithCarQueryHandler getCarWithCarQueryHandler,
+            GetLastFiveCarWithBrandQueryHandler getLastFiveCarWithBrandQueryHandler)
         {
             _getCarQueryHandler = getCarQueryHandler;
             _getCarByIdQueryHandler = getCarByIdQueryHandler;
@@ -31,6 +33,7 @@ namespace WebAPI.Controllers
             _updateCarCommandHandler = updateCarCommandHandler;
             _removeCarCommandHandler = removeCarCommandHandler;
             _getCarWithCarQueryHandler = getCarWithCarQueryHandler;
+            _getLastFiveCarWithBrandQueryHandler = getLastFiveCarWithBrandQueryHandler;
         }
 
         [HttpGet]
@@ -71,6 +74,12 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetCarWithBrand()
         {
             var result = _getCarWithCarQueryHandler.Handle();
+            return Ok(result);
+        }
+        [HttpGet("GetCarFiveWithBrand")]
+        public async Task<IActionResult> GetCarFiveWithBrand()
+        {
+            var result = _getLastFiveCarWithBrandQueryHandler.Handle();
             return Ok(result);
         }
     }

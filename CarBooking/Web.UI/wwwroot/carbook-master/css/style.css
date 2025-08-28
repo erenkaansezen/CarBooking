@@ -9039,16 +9039,17 @@ h1, h2, h3, h4, h5,
         /* Safari 3-8 */
         transform: rotate(20deg);
     } }
-  .ftco-intro:after {
+.ftco-intro:after {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     content: '';
-    background: #000000;
+    background: #FFFFFF;
     z-index: -2;
-    opacity: .3; }
+    opacity: .3;
+}
 
 .ftco-section-parallax {
   position: relative; }
@@ -9138,7 +9139,7 @@ textarea.form-control {
 
 .ftco-section {
     padding: 6em 0;
-    background-color: #212529;
+    background-color: #FFFFFF;
     position: relative;
 }
   @media (max-width: 767.98px) {
