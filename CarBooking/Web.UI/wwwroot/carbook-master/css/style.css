@@ -8196,7 +8196,8 @@ h1, h2, h3, h4, h5,
     font-weight: 400;
     opacity: 1 !important; }
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
-      color: #01d28e; }
+        color: #fff;
+    }
     @media (max-width: 991.98px) {
       .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
         padding-left: 0;
@@ -8236,7 +8237,7 @@ h1, h2, h3, h4, h5,
     padding-left: 18px;
     padding-right: 18px;
     margin-top: 4px;
-    background: #1089ff;
+    background: #ffff;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
@@ -8245,16 +8246,19 @@ h1, h2, h3, h4, h5,
       display: inline-block;
       color: #fff; }
     .ftco-navbar-light .navbar-nav > .nav-item.cta > a:hover {
-      background: #1089ff;
-      border: 1px solid #1089ff; }
+        background: #fff;
+        border: 1px solid #fff;
+    }
   .ftco-navbar-light .navbar-nav > .nav-item.cta.cta-colored a {
     border: 1px solid #01d28e;
     background: #01d28e !important; }
-  .ftco-navbar-light .navbar-nav > .nav-item.active > a {
-    color: #01d28e; }
+.ftco-navbar-light .navbar-nav > .nav-item.active > a {
+    color: #fff;
+}
   @media (max-width: 991.98px) {
     .ftco-navbar-light .navbar-nav > .nav-item.active > a {
-      color: #1089ff; } }
+        color: #fff;
+    } }
   .ftco-navbar-light .navbar-toggler {
     border: none;
     color: rgba(255, 255, 255, 0.5) !important;
@@ -8285,7 +8289,7 @@ h1, h2, h3, h4, h5,
       color: #1089ff !important; }
     .ftco-navbar-light.scrolled .nav-item.cta > a {
       color: #fff !important;
-      background: #1089ff;
+      background: #fff;
       border: none !important;
       padding-top: 0.5rem !important;
       padding-bottom: .5rem !important;
@@ -8299,8 +8303,9 @@ h1, h2, h3, h4, h5,
       .ftco-navbar-light.scrolled .nav-item.cta > a span {
         display: inline-block;
         color: #fff !important; }
-    .ftco-navbar-light.scrolled .nav-item.cta.cta-colored span {
-      border-color: #1089ff; }
+.ftco-navbar-light.scrolled .nav-item.cta.cta-colored span {
+    border-color: #fff;
+}
     @media (max-width: 991.98px) {
       .ftco-navbar-light.scrolled .navbar-nav {
         background: none;
