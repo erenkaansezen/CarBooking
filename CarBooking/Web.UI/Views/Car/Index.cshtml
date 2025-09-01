@@ -1,4 +1,4 @@
-﻿@model List<Web.Dto.CarDtos.ResultCarWithBrandsDtos>
+﻿@model List<Web.Dto.CarPricingDtos.ResultCarPricingDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/UILayout/Index.cshtml";
@@ -18,8 +18,8 @@
                         <div class="text">
                             <h2 class="mb-0"><a href="car-single.html" style="color:white">@item.Model</a></h2>
                             <div class="d-flex mb-3">
-                                <span class="cat" style="color:white">@item.BrandName</span>
-                                <p class="price ml-auto" style="color:white">$500 <span style ="color:white">/Günlük</span></p>
+                                <span class="cat" style="color:white">@item.Brand</span>
+                                <p class="price ml-auto" style="color:white">@item.Amount <span style ="color:white">/Günlük</span></p>
                             </div>
                             <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-dark py-2 mr-1">Kirala</a> <a href="car-single.html" class="btn btn-dark py-2 ml-1">Detaylar</a></p>
                         </div>
