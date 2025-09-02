@@ -1,6 +1,8 @@
 ﻿using Application.Features.CQRS.Commands.CarCommands;
 using Application.Features.CQRS.Handlers.CarHandlers;
 using Application.Features.CQRS.Queries.CarQueries;
+using Application.Features.Mediator.Queries.StatisticQueries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -16,6 +18,7 @@ namespace WebAPI.Controllers
         private readonly CreateCarCommandHandler _createCarCommandHandler;
         private readonly UpdateCarCommandHandler _updateCarCommandHandler;
         private readonly RemoveCarCommandHandler _removeCarCommandHandler;
+        private readonly IMediator _mediator;
 
 
         public CarsController(
@@ -25,7 +28,8 @@ namespace WebAPI.Controllers
             UpdateCarCommandHandler updateCarCommandHandler,
             RemoveCarCommandHandler removeCarCommandHandler,
             GetCarWithCarQueryHandler getCarWithCarQueryHandler,
-            GetLastFiveCarWithBrandQueryHandler getLastFiveCarWithBrandQueryHandler)
+            GetLastFiveCarWithBrandQueryHandler getLastFiveCarWithBrandQueryHandler,
+            IMediator mediator)
         {
             _getCarQueryHandler = getCarQueryHandler;
             _getCarByIdQueryHandler = getCarByIdQueryHandler;
@@ -34,6 +38,7 @@ namespace WebAPI.Controllers
             _removeCarCommandHandler = removeCarCommandHandler;
             _getCarWithCarQueryHandler = getCarWithCarQueryHandler;
             _getLastFiveCarWithBrandQueryHandler = getLastFiveCarWithBrandQueryHandler;
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -82,5 +87,6 @@ namespace WebAPI.Controllers
             var result = _getLastFiveCarWithBrandQueryHandler.Handle();
             return Ok(result);
         }
+
     }
 }
