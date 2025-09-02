@@ -10,5 +10,7 @@ namespace Application.Features.Mediator.Commands.LocaitonCommands
     public class CreateLocationCommand : IRequest
     {
         public string Name { get; set; }
+        public string LocationUrl { get; set; }
+
     }
 }

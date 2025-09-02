@@ -28,8 +28,7 @@ namespace Application.Features.CQRS.Handlers.BannerHandlers
                 BannerId = value.BannerId,
                 Title = value.Title,
                 Description = value.Description,
-                VideoDescription = value.VideoDescription,
-                VideoUrl = value.VideoUrl
+                ImageUrl = value.ImageUrl
             };
         }
     }

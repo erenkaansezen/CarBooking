@@ -1,0 +1,20 @@
+﻿@model List<Web.Dto.BannerDtos.ResultBannerDto>
+@{
+    // id=3 olan banner
+    var b2 = Model?.FirstOrDefault(x => x.BannerId == 2);
+
+    // CoverImgUrl yoksa ImageUrl'e düş
+    var raw = b2?.ImageUrl ?? b2?.ImageUrl ?? "";
+
+    // Relative ise ~/ ile çöz, boşsa fallback kullan
+    var bgUrl = !string.IsNullOrWhiteSpace(raw)
+                ? (raw.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                    ? raw
+                    : Url.Content("~/" + raw.TrimStart('/')))
+                : "https://img.sixt.com/1600/dfe29741-8732-4821-9003-83c08beceaff.jpg"; // fallback
+}
+<div class="hero-wrap ftco-degree-bg" style="background-image: url('@bgUrl');" data-stellar-background-ratio="0.5">    </div>
+
+
+
+

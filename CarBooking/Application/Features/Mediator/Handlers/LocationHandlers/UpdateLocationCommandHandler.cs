@@ -26,6 +26,7 @@ namespace Application.Features.Mediator.Handlers.LocationHandlers
             if (location != null)
             {
                 location.Name = request.Name;
+                location.LocationUrl = request.LocationUrl;
                 await _repository.UpdateAsync(location);
             }
         }

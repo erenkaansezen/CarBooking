@@ -1,0 +1,77 @@
+﻿@model List<Web.Dto.BannerDtos.ResultBannerDto>
+@{
+    ViewData["Title"] = "Banner Yönetimi";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    var total = Model?.Count ?? 0;
+}
+<br />
+<br />
+<br />
+<br />
+<div class="page-content py-3">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h4 class="mb-0">Sayfa Görselleri</h4>
+            <span class="badge bg-dark">Toplam: @total</span>
+        </div>
+
+        <div class="row gy-4 gx-4">
+            @foreach (var item in Model)
+            {
+                var raw = item.ImageUrl ?? "";
+                var src = raw.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                ? raw
+                : Url.Content("~/" + raw.TrimStart('/'));
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card shadow-sm h-100 rounded-3">
+
+                        <!-- Görsel -->
+                        <div class="ratio ratio-21x9 bg-light rounded-top overflow-hidden">
+                            @if (string.IsNullOrWhiteSpace(item.ImageUrl))
+                            {
+                                <div class="d-flex align-items-center justify-content-center w-100 h-100 text-muted">
+                                    Görsel yok
+                                </div>
+                            }
+                            else
+                            {
+                                <img src="@src"
+                                     alt="Banner - @item.Title"
+                                     class="w-100 h-100"
+                                     style="object-fit:cover"
+                                     loading="lazy" />
+                            }
+                        </div>
+
+                        <!-- İçerik -->
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h6 class="mb-2 text-truncate" title="@item.Title">@item.Title</h6>
+                            </div>
+                        </div>
+
+                        <!-- Aksiyonlar: xs=alt alta, sm+=yan yana -->
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <div class="d-flex flex-column flex-sm-row gap-3">
+                                <a href="~/Admin/AdminBanner/UpdateBanner/@item.BannerId"
+                                   class="btn btn-dark btn-sm w-100 w-sm-auto">
+                                    Düzenle
+                                </a>
+
+                                @if (!string.IsNullOrWhiteSpace(item.ImageUrl))
+                                {
+                                    <a href="@src" target="_blank" rel="noopener"
+                                       class="btn btn-outline-dark btn-sm w-100 w-sm-auto">
+                                        Görüntüle
+                                    </a>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -29,7 +29,6 @@ namespace WebAPI.Controllers
             _removeContactCommandHandler = removeContactCommandHandler;
         }
 
-        // GET: api/Contacts
         [HttpGet]
         public async Task<IActionResult> ContactList()
         {
@@ -61,7 +60,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveContact(int id)
         {
             await _removeContactCommandHandler.Handle(new RemoveContactCommand(id));

@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
             await _createHandler.Handle(command);
             return Ok("Eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveBanner(int id)
         {
             await _removeHandler.Handle(new RemoveBannerCommand(id));

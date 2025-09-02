@@ -25,8 +25,7 @@ namespace Application.Features.CQRS.Handlers.BannerHandlers
             {
                 banner.Title = command.Title;
                 banner.Description = command.Description;
-                banner.VideoDescription = command.VideoDescription;
-                banner.VideoUrl = command.VideoUrl;
+                banner.ImageUrl = command.ImageUrl;
                 await _repository.UpdateAsync(banner);
             }
         }

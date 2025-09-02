@@ -11,5 +11,7 @@ namespace Application.Features.Mediator.Commands.LocaitonCommands
     {
         public int LocationID { get; set; }
         public string Name { get; set; }
+        public string LocationUrl { get; set; }
+
     }
 }

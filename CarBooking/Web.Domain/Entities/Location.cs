@@ -10,5 +10,6 @@ namespace Web.Domain.Entities
     {
         public int LocationID { get; set; }
         public string Name { get; set; }
+        public string LocationUrl { get; set; }
     }
 }

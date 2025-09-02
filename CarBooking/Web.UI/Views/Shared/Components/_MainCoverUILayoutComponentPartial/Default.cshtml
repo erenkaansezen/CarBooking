@@ -1,9 +1,31 @@
-﻿<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('https://img.sixt.com/1200/f77b34fe-b837-4a74-81a0-ace8fde63bad.jpg');" data-stellar-background-ratio="0.5">
+﻿@model List<Web.Dto.BannerDtos.ResultBannerDto>
+
+@{
+    // id=3 olan banner
+    var b3 = Model?.FirstOrDefault(x => x.BannerId == 4);
+
+    // CoverImgUrl yoksa ImageUrl'e düş
+    var raw = b3?.ImageUrl ?? b3?.ImageUrl ?? "";
+
+    // Relative ise ~/ ile çöz, boşsa fallback kullan
+    var bgUrl = !string.IsNullOrWhiteSpace(raw)
+                ? (raw.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                    ? raw
+                    : Url.Content("~/" + raw.TrimStart('/')))
+                : "https://img.sixt.com/1200/f77b34fe-b837-4a74-81a0-ace8fde63bad.jpg"; // fallback
+}
+
+<section class="hero-wrap hero-wrap-2 js-fullheight"
+         style="background-image: url('@bgUrl');"
+         data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
             <div class="col-md-9 ftco-animate pb-5">
-                <p class="breadcrumbs"><span class="mr-2"><a href="/Default/Index">Sezen&Co <i class="ion-ios-arrow-forward"></i></a></span> <i class="ion-ios-arrow-forward"></i></span></p>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="/Default/Index">Sezen&Co <i class="ion-ios-arrow-forward"></i></a></span>
+                    <i class="ion-ios-arrow-forward"></i>
+                </p>
                 <h1 class="mb-3 bread">Hakkımızda</h1>
             </div>
         </div>

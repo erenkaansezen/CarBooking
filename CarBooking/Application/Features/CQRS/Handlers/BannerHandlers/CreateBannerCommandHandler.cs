@@ -23,8 +23,7 @@ namespace Application.Features.CQRS.Handlers.BannerHandlers
             {
                 Title = command.Title,
                 Description = command.Description,
-                VideoDescription = command.VideoDescription,
-                VideoUrl = command.VideoUrl
+                ImageUrl = command.ImageUrl
             };
             await _repository.AddAsync(banner);
         }

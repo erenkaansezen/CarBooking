@@ -1,0 +1,46 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Web.Dto.FooterAdressesDtos.UpdateFooterAdressesDto
+@{
+    ViewData["Title"] = "Footer Adresi Düzenle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid py-3">
+    <form method="post" class="mb-0">
+        <input asp-for="FooterAddressID" type="hidden" />
+
+        <div class="card shadow-sm bg-white">
+            <div class="card-body">
+                <h5 class="mb-4">Footer Adresi Düzenle</h5>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Açıklama</label>
+                    <textarea asp-for="Description" rows="4" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Adress" class="form-label">Adres</label>
+                    <textarea asp-for="Adress" rows="3" class="form-control"></textarea>
+                    <span asp-validation-for="Adress" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label">Telefon</label>
+                    <input asp-for="Phone" class="form-control" placeholder="+90 5xx xxx xx xx" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Email" class="form-label">E-posta</label>
+                    <input asp-for="Email" class="form-control" placeholder="ornek@domain.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid" style="max-width:260px;">
+                    <button type="submit" class="btn btn-dark btn-lg">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

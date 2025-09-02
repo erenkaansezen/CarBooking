@@ -28,7 +28,8 @@ namespace Application.Features.Mediator.Handlers.LocationHandlers
             return values.Select(x => new GetLocationQueryResult
             {
                 LocationID = x.LocationID,
-                Name = x.Name
+                Name = x.Name,
+                LocationUrl = x.LocationUrl
             }).ToList();
         }
     }

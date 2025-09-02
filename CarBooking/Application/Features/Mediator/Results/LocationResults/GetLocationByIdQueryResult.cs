@@ -10,5 +10,7 @@ namespace Application.Features.Mediator.Results.LocationResults
     {
         public int LocationID { get; set; }
         public string Name { get; set; }
+        public string LocationUrl { get; set; }
+
     }
 }

@@ -3,6 +3,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/UILayout/Index.cshtml";
 }
+@await Component.InvokeAsync("_HeadUILayoutComponentPartial")
+
 @await Component.InvokeAsync("_CarCoverComponentPartial")
 
 <section class="ftco-section bg-gradient">

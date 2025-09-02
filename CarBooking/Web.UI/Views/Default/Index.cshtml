@@ -9,11 +9,11 @@
 @await Component.InvokeAsync("_HeadUILayoutComponentPartial")
 <body>
     @await Component.InvokeAsync("_NavbarUILayoutComponentPartial")
-    <div class="hero-wrap ftco-degree-bg" style="background-image: url('https://img.sixt.com/1600/0dc76e47-5487-426a-8847-b9c21fcc628e.jpg');" data-stellar-background-ratio="0.5">    </div>
+    @await Component.InvokeAsync("_DefaultBannerComponentPartial")
     <section class="ftco-section ftco-no-pt bg-light">
         <div class="container">
             <div class="row no-gutters">
-                <div class="col-md-12	featured-top">
+                <div class="col-md-12 featured-top">
                     <div class="row no-gutters">
                         <div class="col-md-4 d-flex align-items-center">
                             <form action="#" class="request-form ftco-animate bg-dark">

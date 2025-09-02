@@ -1,0 +1,39 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model Web.Dto.BannerDtos.UpdateBannerDto
+@{
+    ViewData["Title"] = "AddCar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Banner Güncellemesi</h4>
+                        <form method="post">
+                            <input type="hidden" asp-for="BannerId" />
+                            <div class="form-group">
+                                <label for="exampleInputName">Banner Başlığı</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputDescription">Banner Açıklaması</label>
+                                <input type="text" class="form-control" id="exampleInputDescription" asp-for="Description">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputImageUrl">Banner Fotoğraf Link'i'</label>
+                                <input type="text" class="form-control" id="exampleInputImageUrl" asp-for="ImageUrl">
+                            </div>
+                            <button type="submit" class="btn btn-dark waves-effect waves-light">Banner Güncelle</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

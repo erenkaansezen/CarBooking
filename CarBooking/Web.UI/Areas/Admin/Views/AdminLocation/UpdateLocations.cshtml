@@ -1,0 +1,48 @@
+﻿@model Web.Dto.LocationDtos.UpdateServicesDto
+@{
+    ViewData["Title"] = "Lokasyon Düzenle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+
+    var raw = Model?.LocationUrl ?? "";
+    var link = !string.IsNullOrWhiteSpace(raw)
+               ? (raw.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                    ? raw
+                    : Url.Content("~/" + raw.TrimStart('/')))
+               : null;
+}
+
+<div class="container-fluid py-3">
+    <form asp-area="Admin" asp-controller="AdminLocation" asp-action="Update" method="post" class="mb-0">
+        @Html.AntiForgeryToken()
+        <input asp-for="LocationID" type="hidden" />
+
+        <div class="card shadow-sm bg-white">
+            <div class="card-body">
+                <h5 class="mb-4">Lokasyon Bilgisi</h5>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Ad</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="LocationUrl" class="form-label">Bağlantı (URL)</label>
+                    <input asp-for="LocationUrl" class="form-control" placeholder="https://..." />
+                    <span asp-validation-for="LocationUrl" class="text-danger"></span>
+
+                    @if (link != null)
+                    {
+                        <div class="form-text mt-2">
+                            Mevcut bağlantı: <a href="@link" target="_blank" rel="noopener">@raw</a>
+                        </div>
+                    }
+                </div>
+
+                <div class="d-grid" style="max-width:260px;">
+                    <button type="submit" class="btn btn-dark btn-lg">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

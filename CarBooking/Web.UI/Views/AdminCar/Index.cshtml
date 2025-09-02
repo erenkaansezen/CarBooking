@@ -1,56 +1,93 @@
 ﻿@model List<Web.Dto.CarDtos.ResultCarWithBrandsDtos>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Araç Yönetimi";
     Layout = "~/Views/AdminLayout/Index.cshtml";
-    var count = 0;
+    var total = Model?.Count ?? 0;
 }
-<br />
-<br />
-<br />
-<br />
-<br />
-<div class="row">
-    <div class="col-xl-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Araç Tablosu</h5>
-                <div class="table-responsive">
-                    <table class="table table-borderless mb-0">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Marka</th>
-                                <th>Model</th>
-                                <th>Vites Türü</th>
-                                <th>Km</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach(var item in Model)
-                            {
-                                count++;
-                                <tr>
-                                    <th scope="row">@count</th>
-                                    <td>@item.BrandName</td>
-                                    <td>@item.Model</td>
-                                    <td>@item.Transmission</td>
-                                    <td>@item.Km</td>
-                                    <td><a href="/AdminCar/UpdateCar/@item.CarID" class="btn btn-outline-dark">Düzenlemeler</a></td>
-                                    <td><a href="/AdminCar/AddCar/@item.CarID" class="btn btn-outline-dark">Detaylar</a></td>
-                                    <td><a href="~/AdminCar/RemoveCar/@item.CarID" class="btn btn-outline-danger">Kaldır</a></td>
+<style>
+    /* Tüm kapak görselleri için sabit boyut */
+    .car-cover {
+        width: 100%;
+        height: 200px; /* ← burayı istersen 180/220 yapabilirsin */
+        object-fit: cover; /* Taşmadan kırpar */
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+        background: #f8f9fa; /* Yüklenirken açık zemin */
+        display: block;
+    }
 
-                                </tr>
-                            }
+    /* Görsel yoksa aynı yüksekliğe sahip placeholder */
+    .car-cover-placeholder {
+        height: 200px; /* ← car-cover ile aynı olmalı */
+        background: #f8f9fa;
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+    }
+</style>
+<br />
+<br />
+<br />
+<br />
+<div class="page-content py-3">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h4 class="mb-0">Araçlar</h4>
+            <span class="badge bg-light">Toplam: @total</span>
+        </div>
 
-                        </tbody>
-                    </table>
+        <div class="row gx-4 gy-5">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+                    <div class="card shadow-sm h-100 rounded-3">
+
+
+                        @if (string.IsNullOrWhiteSpace(item.CoverImageUrl))
+                        {
+                            <div class="car-cover-placeholder d-flex align-items-center justify-content-center text-muted small">
+                                Görsel yok
+                            </div>
+                        }
+                        else
+                        {
+                            <img src="@item.CoverImageUrl"
+                                 alt="@($"{item.BrandName} {item.Model}")"
+                                 class="car-cover"
+                                 loading="lazy" />
+                        }
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h6 class="mb-1 text-truncate" title="@($"{item.BrandName} {item.Model}")">
+                                    @item.BrandName @item.Model
+                                </h6>
+                            </div>
+                            <ul class="list-unstyled small text-muted mb-0">
+                                <li><strong>Vites:</strong> @item.Transmission</li>
+                                <li><strong>Km:</strong> @item.Km</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-2">
+                            <div class="vstack gap-3">
+                                <a href="~/AdminCar/UpdateCar/@item.CarID" class="btn btn-dark btn-sm w-100">
+                                    Düzenle
+                                </a>
+                                <a href="~/AdminCar/AddCar/@item.CarID" class="btn btn-outline-dark btn-sm w-100">
+                                    Detaylar
+                                </a>
+                                <a href="~/AdminCar/RemoveCar/@item.CarID"
+                                   class="btn btn-outline-dark btn-sm w-100"
+                                   onclick="return confirm('Aracı kaldırmak istediğinize emin misiniz?');">
+                                    Kaldır
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-            </div>
+            }
+            <br />
+            <br />
         </div>
     </div>
 </div>
-

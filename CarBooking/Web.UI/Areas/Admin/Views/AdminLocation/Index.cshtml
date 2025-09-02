@@ -1,0 +1,85 @@
+﻿@model List<Web.Dto.LocationDtos.ResultLocationDto>
+@{
+    ViewData["Title"] = "Lokasyonlar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    var total = Model?.Count ?? 0;
+    var i = 0;
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="page-content py-3">
+    <div class="container-fluid">
+
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h4 class="mb-0">Lokasyonlar</h4>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-middle table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width:56px">#</th>
+                                <th>Ad</th>
+                                <th>Bağlantı (URL)</th>
+                                <th style="width:220px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || !Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted py-4">Kayıt bulunamadı.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var x in Model)
+                                {
+                                    i++;
+
+                                    var raw = x.LocationUrl ?? "";
+                                    var url = string.IsNullOrWhiteSpace(raw)
+                                    ? null
+                                    : (raw.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                                    ? raw
+                                    : Url.Content("~/" + raw.TrimStart('/')));
+
+                                    <tr>
+                                        <td class="text-muted">@i</td>
+                                        <td>@x.Name</td>
+                                        <td class="text-break">
+                                            @if (string.IsNullOrWhiteSpace(raw))
+                                            {
+                                                <span class="text-muted">—</span>
+                                            }
+                                            else
+                                            {
+                                                <a href="@url" target="_blank" rel="noopener">@raw</a>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="d-grid" style="max-width:220px;">
+                                                <a href="~/Admin/AdminLocation/UpdateLocation/@x.LocationID" class="btn btn-dark btn-sm">
+                                                    Düzenle
+                                                </a>
+                                                <a href="~/Admin/AdminLocation/UpdateLocation/@x.LocationID" class="btn btn-dark btn-sm">
+                                                    Kaldır
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
