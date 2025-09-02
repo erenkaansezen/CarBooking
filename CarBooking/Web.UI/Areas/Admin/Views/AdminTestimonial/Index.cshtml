@@ -1,0 +1,119 @@
+﻿@model List<Web.Dto.TestimonialDtos.ResultTestimonialDto>
+
+@{
+    ViewData["Title"] = "Referanslar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    var total = Model?.Count ?? 0;
+    var i = 0;
+}
+
+<style>
+    .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #f8f9fa;
+        display: block;
+        box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    }
+
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-width: 520px; /* gerekirse artır/azalt */
+    }
+</style>
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="page-content py-3">
+    <div class="container-fluid">
+
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="d-flex align-items-center gap-3">
+                <h4 class="mb-0">Referanslar</h4>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width:56px"></th>
+                                <th style="width:72px"></th>
+                                <th>Ad Soyad</th>
+                                <th>Başlık</th>
+                                <th>Yorum</th>
+                                <th style="width:220px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || !Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-4">Kayıt bulunamadı.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    i++;
+
+                                    // Görseli güvenli çöz (relative ise ~/)
+                                    var raw = item.ImageUrl ?? "";
+                                    var img = string.IsNullOrWhiteSpace(raw)
+                                    ? null
+                                    : (raw.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                                    ? raw
+                                    : Url.Content("~/" + raw.TrimStart('/')));
+
+                                    <tr>
+                                        <td class="text-muted">@i</td>
+
+                                        <td>
+                                            @if (img is null)
+                                            {
+                                                <div class="avatar d-flex align-items-center justify-content-center text-muted small">—</div>
+                                            }
+                                            else
+                                            {
+                                                <img src="@img" alt="@item.Name" class="avatar" loading="lazy" />
+                                            }
+                                        </td>
+
+                                        <td class="fw-semibold">@item.Name</td>
+                                        <td class="text-truncate" style="max-width:260px">@item.Title</td>
+                                        <td><div class="small text-muted line-clamp-2">@item.Comment</div></td>
+
+                                        <td>
+                                            <div class="d-flex flex-column flex-sm-row gap-2">
+                                                <a href="~/Admin/AdminTestimonial/UpdateTestimonial/@item.TestimonialID"
+                                                   class="btn btn-outline-success btn-sm w-100 w-sm-auto">
+                                                    Güncelle
+                                                </a>
+                                                <a href="~/Admin/AdminTestimonial/RemoveTestimonial/@item.TestimonialID"
+                                                   class="btn btn-outline-danger btn-sm w-100 w-sm-auto"
+                                                   onclick="return confirm('Bu referansı silmek istediğinize emin misiniz?');">
+                                                    Sil
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

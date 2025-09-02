@@ -83,7 +83,7 @@ namespace Web.UI.Areas.Admin.Controllers
         public async Task<IActionResult> RemoveServices(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync("https://localhost:7245/api/Services?id=" + id);
+            var responseMessage = await client.DeleteAsync($"https://localhost:7245/api/Services/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
