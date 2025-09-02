@@ -19,7 +19,7 @@ namespace Application.Features.CQRS.Handlers.CarHandlers
         }
         public async Task Handle(UpdateCarCommand command)
         {
-            var car = await _repository.GetByIdAsync(command.BrandID);
+            var car = await _repository.GetByIdAsync(command.CarID);
             if (car != null)
             {
                 car.Fuel = command.Fuel;

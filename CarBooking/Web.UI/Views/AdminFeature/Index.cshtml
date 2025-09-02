@@ -1,4 +1,4 @@
-﻿@model List<Web.Dto.CarDtos.ResultCarWithBrandsDtos>
+﻿@model List<Web.Dto.FeatureDtos.ResultFeatureDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -13,34 +13,28 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Araç Tablosu</h5>
+                <h5 class="card-title">Araç Özellikleri</h5>
                 <div class="table-responsive">
                     <table class="table table-borderless mb-0">
                         <thead class="thead-light">
                             <tr>
                                 <th>#</th>
-                                <th>Marka</th>
-                                <th>Model</th>
-                                <th>Vites Türü</th>
-                                <th>Km</th>
+                                <th>Özellik</th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var item in Model)
+                            @foreach (var item in Model)
                             {
                                 count++;
                                 <tr>
                                     <th scope="row">@count</th>
-                                    <td>@item.BrandName</td>
-                                    <td>@item.Model</td>
-                                    <td>@item.Transmission</td>
-                                    <td>@item.Km</td>
-                                    <td><a href="/AdminCar/UpdateCar/@item.CarID" class="btn btn-outline-dark">Düzenlemeler</a></td>
-                                    <td><a href="/AdminCar/AddCar/@item.CarID" class="btn btn-outline-dark">Detaylar</a></td>
-                                    <td><a href="~/AdminCar/RemoveCar/@item.CarID" class="btn btn-outline-danger">Kaldır</a></td>
+                                    <td>@item.Name</td>
+                                    <td><a href="/AdminFeature/UpdateFeature/@item.FeatureID" class="btn btn-outline-dark">Düzenlemeler</a></td>
+                                    <td><a href="/AdminFeature/AddFeature/@item.FeatureID" class="btn btn-outline-dark">Detaylar</a></td>
+                                    <td><a href="~/AdminFeature/RemoveFeature/@item.FeatureID" class="btn btn-outline-danger">Kaldır</a></td>
 
                                 </tr>
                             }
