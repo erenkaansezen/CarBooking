@@ -21,5 +21,57 @@ namespace WebAPI.Controllers
             var value =await  _mediator.Send(new GetCarCountQuery());
             return Ok(value);
         }
+        [HttpGet("BrandNameByMaxCar")]
+        public async Task<IActionResult> BrandNameByMaxCar()
+        {
+            var value = await _mediator.Send(new GetBrandNameByMaxCarQuery());
+            return Ok(value);
+        }
+        [HttpGet("GetAvgRentPriceForDaily")]
+        public async Task<IActionResult> GetAvgRentPriceForDaily()
+        {
+            var value = await _mediator.Send(new GetAvgRentPriceForDailyQuery());
+            return Ok(value);
+        }
+        [HttpGet("GetAvgRentPriceForWeekly")]
+        public async Task<IActionResult> GetAvgRentPriceForWeekly()
+        {
+            var value = await _mediator.Send(new GetAvgRentPriceForWeeklyQuery());
+            return Ok(value);
+        }
+        [HttpGet("GetAvgRentPriceForMonthly")]
+        public async Task<IActionResult> GetAvgRentPriceForMonthly()
+        {
+            var value = await _mediator.Send(new GetAvgRentPriceForMonthlyQuery());
+            return Ok(value);
+        }
+        [HttpGet("GetBrandCount")]
+        public async Task<IActionResult> GetBrandCount()
+        {
+            var value = await _mediator.Send(new GetBrandCountQuery());
+            return Ok(value);
+        }
+        [HttpGet("GetCarCountByElectric")]
+        public async Task<IActionResult> GetCarCountByElectric()
+        {
+            var value = await _mediator.Send(new GetCarCountByElectricQuery());
+            return Ok(value);
+        }
+        [HttpGet("GetCarCountByTransmissionIsAuto")]
+        public async Task<IActionResult> GetCarCountByTransmissionIsAuto()
+        {
+            var value = await _mediator.Send(new GetCarCountByTransmissionIsAutoQuery());
+            return Ok(value);
+        }
+        [HttpGet("GetLocationCount")]
+        public async Task<IActionResult> GetLocationCount()
+        {
+            var value = await _mediator.Send(new GetLocationCountQuery());
+            return Ok(value);
+        }
+
+
+
+
     }
 }
