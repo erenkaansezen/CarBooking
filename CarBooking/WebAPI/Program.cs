@@ -7,12 +7,14 @@ using Application.Features.CQRS.Handlers.ContactHandlers;
 using Application.Interfaces;
 using Application.Interfaces.CarInterfaces;
 using Application.Interfaces.CarPricingInterfaces;
+using Application.Interfaces.StatisticsInterfaces;
 using Application.Services;
 using Web.Domain.Entities;
 using Web.Persistence.Context;
 using Web.Persistence.Repositories;
 using Web.Persistence.Repositories.CarPricingRepositories;
 using Web.Persistence.Repositories.CarRepositories;
+using Web.Persistence.Repositories.StatisticsRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,8 @@ builder.Services.AddScoped<WebContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
 builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
+builder.Services.AddScoped(typeof(IStatisticsRepository), typeof(StatisticsRepository));
+
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
 builder.Services.AddScoped<CreateAboutCommandHandler>();
