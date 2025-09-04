@@ -8,6 +8,10 @@ namespace Web.Domain.Entities
 {
     public class CarPricing
     {
+        public CarPricing()
+        {
+
+        }
         public int CarPricingID { get; set; }
         public int CarID { get; set; }
         public Car Car { get; set; }

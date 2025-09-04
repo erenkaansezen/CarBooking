@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Web.Dto.FooterAdressesDtos;
+using Web.Dto.BannerDtos;
 
-namespace Web.UI.ViewComponents.UILayoutViewComponents
+namespace Web.UI.ViewComponents.CarPricingViewComponents
 {
-    public class _FooterUILayoutComponentPartial : ViewComponent
+    public class _CarPricingBannerViewComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _FooterUILayoutComponentPartial(IHttpClientFactory httpClientFactory)
+        public _CarPricingBannerViewComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -16,11 +16,11 @@ namespace Web.UI.ViewComponents.UILayoutViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7245/api/FooterAdress");
+            var response = await client.GetAsync("https://localhost:7245/api/Banners");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultFooterAdressesDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultBannerDto>>(jsonData);
                 return View(values);
             }
             return View();

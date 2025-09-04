@@ -20,5 +20,11 @@ namespace WebAPI.Controllers
             var result = await _mediator.Send(new GetCarPricingQuery());
             return Ok(result);
         }
+        [HttpGet("GetCarPricingWithTimePeriod")]
+        public async Task<IActionResult> GetCarPricingWithTimePeriod()
+        {
+            var result = await _mediator.Send(new GetCarPricingWithTimePeriodQuery());
+            return Ok(result);
+        }
     }
 }

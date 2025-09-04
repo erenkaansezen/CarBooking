@@ -8918,7 +8918,7 @@ h1, h2, h3, h4, h5,
           left: -10px;
           font-size: 14px; }
         .table tbody tr td.price h3 span.num {
-          color: #1089ff;
+          color: black;
           font-size: 20px;
           position: relative; }
         .table tbody tr td.price h3 span.per {
@@ -8944,7 +8944,7 @@ h1, h2, h3, h4, h5,
         .table tbody tr td.price .btn-custom a {
           padding: 7px 20px;
           display: inline-block;
-          background: #1089ff;
+          background: black;
           color: #fff;
           -webkit-border-radius: 5px;
           -moz-border-radius: 5px;
@@ -8960,7 +8960,7 @@ h1, h2, h3, h4, h5,
         -ms-transition: all 0.3s ease;
         transition: all 0.3s ease; }
       .table tbody tr td.price:hover.price {
-        background: #01d28e; }
+        background: #fff; }
       .table tbody tr td.price:hover .btn-custom {
         opacity: 1; }
       .table tbody tr td.price:hover .price-rate {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.ViewModels;
 using Web.Domain.Entities;
 
 namespace Application.Interfaces.CarPricingInterfaces
@@ -10,6 +11,9 @@ namespace Application.Interfaces.CarPricingInterfaces
     public interface ICarPricingRepository 
     {
         List<CarPricing> GetCarPricingWithCars();
+        //List<CarPricing> GetCarPricingWithTimePeriod();
+        List<CarPricingViewModel> GetCarPricingWithTimePeriod1();
+
 
     }
 }
