@@ -1,22 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using Web.Dto.LocationDtos;
+using Web.Dto.ReservationDtos;
 
 namespace Web.UI.Controllers
 {
-    public class DefaultController : Controller
+    public class ReservationController : Controller
     {
-
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public DefaultController(IHttpClientFactory httpClientFactory)
+        public ReservationController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
+            ViewBag.carid = id;
             var client = _httpClientFactory.CreateClient();
             var response = await client.GetAsync("https://localhost:7245/api/Locations");
 
@@ -29,17 +31,23 @@ namespace Web.UI.Controllers
                                                   Value = x.LocationID.ToString()
                                               }).ToList();
             ViewBag.v = locations;
+
+            
+
             return View();
         }
         [HttpPost]
-        public IActionResult Index(string book_pick_date,string book_off_date,string time_pick,string time_off,string locationID)
+        public IActionResult Index(CreateReservationDto createReservationDto)
         {
-            TempData["book_pick_date"] = book_pick_date;
-            TempData["book_off_date"] = book_off_date;
-            TempData["time_pick"] = time_pick;
-            TempData["time_off"] = time_off;
-            TempData["locationID"] = locationID;
-            return RedirectToAction("Index", "RentACarList");
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(createReservationDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var response = client.PostAsync("https://localhost:7245/api/Reservations", stringContent).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Default");
+            }
+            return View();
         }
     }
 }

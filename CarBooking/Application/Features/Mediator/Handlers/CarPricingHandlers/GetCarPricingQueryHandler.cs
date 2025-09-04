@@ -27,6 +27,7 @@ namespace Application.Features.Mediator.Handlers.CarPricingHandlers
             {
                 Amount = x.Amount,
                 CarPricingId = x.CarPricingID,
+                CarId = x.CarID,
                 CoverImageUrl = x.Car.CoverImageUrl,
                 Brand = x.Car.Brand.Name,
                 Model = x.Car.Model

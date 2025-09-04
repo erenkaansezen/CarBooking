@@ -1,7 +1,7 @@
 ﻿@model List<Web.Dto.BannerDtos.ResultBannerDto>
 @{
     // id=3 olan banner
-    var b2 = Model?.FirstOrDefault(x => x.BannerId == 2);
+    var b2 = Model?.FirstOrDefault(x => x.BannerId == 1);
 
     // CoverImgUrl yoksa ImageUrl'e düş
     var raw = b2?.ImageUrl ?? b2?.ImageUrl ?? "";

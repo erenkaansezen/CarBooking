@@ -12,8 +12,8 @@ using Web.Persistence.Context;
 namespace Web.Persistence.Migrations
 {
     [DbContext(typeof(WebContext))]
-    [Migration("20250825161344_mig_first")]
-    partial class mig_first
+    [Migration("20250903125006_add_mig_rentacarprocess")]
+    partial class add_mig_rentacarprocess
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,15 +62,11 @@ namespace Web.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VideoDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VideoUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -266,6 +262,31 @@ namespace Web.Persistence.Migrations
                     b.ToTable("Contacts");
                 });
 
+            modelBuilder.Entity("Web.Domain.Entities.Customer", b =>
+                {
+                    b.Property<int>("CustomerID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerID"));
+
+                    b.Property<string>("CustomerEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerSurname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerID");
+
+                    b.ToTable("Customer");
+                });
+
             modelBuilder.Entity("Web.Domain.Entities.Feature", b =>
                 {
                     b.Property<int>("FeatureID")
@@ -295,8 +316,9 @@ namespace Web.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Description")
-                        .HasColumnType("int");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -318,6 +340,10 @@ namespace Web.Persistence.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LocationID"));
+
+                    b.Property<string>("LocationUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -343,6 +369,84 @@ namespace Web.Persistence.Migrations
                     b.HasKey("PricingID");
 
                     b.ToTable("Pricings");
+                });
+
+            modelBuilder.Entity("Web.Domain.Entities.RentACar", b =>
+                {
+                    b.Property<int>("RentACarId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RentACarId"));
+
+                    b.Property<bool>("Available")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RentACarId");
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("RentACars");
+                });
+
+            modelBuilder.Entity("Web.Domain.Entities.RentACarProcess", b =>
+                {
+                    b.Property<int>("RentACarProcessID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RentACarProcessID"));
+
+                    b.Property<int>("CarID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DropOffDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DropOffDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DropOffLocationId")
+                        .HasColumnType("int");
+
+                    b.Property<TimeOnly>("DropOffTime")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime>("PickUpDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PickUpDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PickUpLocationId")
+                        .HasColumnType("int");
+
+                    b.Property<TimeOnly>("PickUpTime")
+                        .HasColumnType("time");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("RentACarProcessID");
+
+                    b.HasIndex("CarID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.ToTable("RentACarProcess");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Service", b =>
@@ -484,6 +588,44 @@ namespace Web.Persistence.Migrations
                     b.Navigation("Pricing");
                 });
 
+            modelBuilder.Entity("Web.Domain.Entities.RentACar", b =>
+                {
+                    b.HasOne("Web.Domain.Entities.Car", "Car")
+                        .WithMany("RentACars")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Web.Domain.Entities.Location", "Location")
+                        .WithMany("RentACars")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("Web.Domain.Entities.RentACarProcess", b =>
+                {
+                    b.HasOne("Web.Domain.Entities.Car", "Car")
+                        .WithMany("RentACarProcesses")
+                        .HasForeignKey("CarID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Web.Domain.Entities.Customer", "Customer")
+                        .WithMany("RentACarProcesses")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("Web.Domain.Entities.Brand", b =>
                 {
                     b.Navigation("Cars");
@@ -496,11 +638,25 @@ namespace Web.Persistence.Migrations
                     b.Navigation("CarFeatures");
 
                     b.Navigation("CarPricings");
+
+                    b.Navigation("RentACarProcesses");
+
+                    b.Navigation("RentACars");
+                });
+
+            modelBuilder.Entity("Web.Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("RentACarProcesses");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Feature", b =>
                 {
                     b.Navigation("CarFeatures");
+                });
+
+            modelBuilder.Entity("Web.Domain.Entities.Location", b =>
+                {
+                    b.Navigation("RentACars");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Pricing", b =>

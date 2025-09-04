@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Web.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class mig_first : Migration
+    public partial class add_mig_rentacar : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,8 +34,7 @@ namespace Web.Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    VideoDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,7 +103,7 @@ namespace Web.Persistence.Migrations
                 {
                     FooterAddressID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -120,7 +119,8 @@ namespace Web.Persistence.Migrations
                 {
                     LocationID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LocationUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -287,6 +287,34 @@ namespace Web.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RentACars",
+                columns: table => new
+                {
+                    RentACarId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PickUpLocationId = table.Column<int>(type: "int", nullable: false),
+                    LocationID = table.Column<int>(type: "int", nullable: false),
+                    CarId = table.Column<int>(type: "int", nullable: false),
+                    Available = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RentACars", x => x.RentACarId);
+                    table.ForeignKey(
+                        name: "FK_RentACars_Cars_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Cars",
+                        principalColumn: "CarID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RentACars_Locations_LocationID",
+                        column: x => x.LocationID,
+                        principalTable: "Locations",
+                        principalColumn: "LocationID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CarDescriptions_CarID",
                 table: "CarDescriptions",
@@ -316,6 +344,16 @@ namespace Web.Persistence.Migrations
                 name: "IX_Cars_BrandID",
                 table: "Cars",
                 column: "BrandID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RentACars_CarId",
+                table: "RentACars",
+                column: "CarId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RentACars_LocationID",
+                table: "RentACars",
+                column: "LocationID");
         }
 
         /// <inheritdoc />
@@ -346,7 +384,7 @@ namespace Web.Persistence.Migrations
                 name: "FooterAddresses");
 
             migrationBuilder.DropTable(
-                name: "Locations");
+                name: "RentACars");
 
             migrationBuilder.DropTable(
                 name: "Services");
@@ -361,10 +399,13 @@ namespace Web.Persistence.Migrations
                 name: "Features");
 
             migrationBuilder.DropTable(
+                name: "Pricings");
+
+            migrationBuilder.DropTable(
                 name: "Cars");
 
             migrationBuilder.DropTable(
-                name: "Pricings");
+                name: "Locations");
 
             migrationBuilder.DropTable(
                 name: "Brands");

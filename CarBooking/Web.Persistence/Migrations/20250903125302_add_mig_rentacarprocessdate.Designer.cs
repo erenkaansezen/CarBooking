@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web.Persistence.Context;
 
@@ -11,9 +12,11 @@ using Web.Persistence.Context;
 namespace Web.Persistence.Migrations
 {
     [DbContext(typeof(WebContext))]
-    partial class WebContextModelSnapshot : ModelSnapshot
+    [Migration("20250903125302_add_mig_rentacarprocessdate")]
+    partial class add_mig_rentacarprocessdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -446,63 +449,6 @@ namespace Web.Persistence.Migrations
                     b.ToTable("RentACarProcess");
                 });
 
-            modelBuilder.Entity("Web.Domain.Entities.Reservation", b =>
-                {
-                    b.Property<int>("ReservationID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservationID"));
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CarID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DriverLicenseYear")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DropOffLocationID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PickUpLocationID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ReservationID");
-
-                    b.HasIndex("CarID");
-
-                    b.HasIndex("DropOffLocationID");
-
-                    b.HasIndex("PickUpLocationID");
-
-                    b.ToTable("Reservations");
-                });
-
             modelBuilder.Entity("Web.Domain.Entities.Service", b =>
                 {
                     b.Property<int>("ServiceID")
@@ -680,29 +626,6 @@ namespace Web.Persistence.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("Web.Domain.Entities.Reservation", b =>
-                {
-                    b.HasOne("Web.Domain.Entities.Car", "Car")
-                        .WithMany("Reservations")
-                        .HasForeignKey("CarID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Web.Domain.Entities.Location", "DropOffLocation")
-                        .WithMany("DropOffReservation")
-                        .HasForeignKey("DropOffLocationID");
-
-                    b.HasOne("Web.Domain.Entities.Location", "PickUpLocation")
-                        .WithMany("PickUpReservation")
-                        .HasForeignKey("PickUpLocationID");
-
-                    b.Navigation("Car");
-
-                    b.Navigation("DropOffLocation");
-
-                    b.Navigation("PickUpLocation");
-                });
-
             modelBuilder.Entity("Web.Domain.Entities.Brand", b =>
                 {
                     b.Navigation("Cars");
@@ -719,8 +642,6 @@ namespace Web.Persistence.Migrations
                     b.Navigation("RentACarProcesses");
 
                     b.Navigation("RentACars");
-
-                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Customer", b =>
@@ -735,10 +656,6 @@ namespace Web.Persistence.Migrations
 
             modelBuilder.Entity("Web.Domain.Entities.Location", b =>
                 {
-                    b.Navigation("DropOffReservation");
-
-                    b.Navigation("PickUpReservation");
-
                     b.Navigation("RentACars");
                 });
 

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Web.Dto.CarPricingDtos
+namespace Web.Dto.RentACarDtos
 {
-    public class ResultCarPricingDto
+    public class FilterRentACarDto
     {
-        public int CarPricingId { get; set; }
-        public int CarId { get; set; }
+        public int carID { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public decimal Amount { get; set; }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Web.Dto.CarPricingDtos
+namespace Application.Features.Mediator.Results.RentCarResults
 {
-    public class ResultCarPricingDto
+    public class GetRentACarQueryResult
     {
-        public int CarPricingId { get; set; }
         public int CarId { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }

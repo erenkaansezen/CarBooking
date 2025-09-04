@@ -1,17 +1,17 @@
 ﻿@model List<Web.Dto.BannerDtos.ResultBannerDto>
 @{
     // id=3 olan banner
-    var b5 = Model?.FirstOrDefault(x => x.BannerId == 4);
+    var b2 = Model?.FirstOrDefault(x => x.BannerId == 5);
 
     // CoverImgUrl yoksa ImageUrl'e düş
-    var raw = b5?.ImageUrl ?? b5?.ImageUrl ?? "";
+    var raw = b2?.ImageUrl ?? b2?.ImageUrl ?? "";
 
     // Relative ise ~/ ile çöz, boşsa fallback kullan
     var bgUrl = !string.IsNullOrWhiteSpace(raw)
                 ? (raw.StartsWith("http", StringComparison.OrdinalIgnoreCase)
                     ? raw
                     : Url.Content("~/" + raw.TrimStart('/')))
-                : "https://eserrentacar.com/Files/img/slider/548944ef-8119-4790-8f24-1b4305abcfda.png"; 
+                : "https://img.sixt.com/1600/dfe29741-8732-4821-9003-83c08beceaff.jpg"; // fallback
 }
 <section class="hero-wrap hero-wrap-2 js-fullheight"
          style="background-image: url('@bgUrl');"
@@ -24,12 +24,11 @@
                     <span class="mr-2"><a href="/Default/Index">Sezen&Co <i class="ion-ios-arrow-forward"></i></a></span>
                     <i class="ion-ios-arrow-forward"></i>
                 </p>
-                <h1 class="mb-3 bread">İletişim</h1>
+                <h1 class="mb-3 bread"></h1>
             </div>
         </div>
     </div>
 </section>
-
 
 
 
