@@ -15,23 +15,28 @@
                 <div class="dropdown-menu">
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a asp-controller="AdminCar" asp-action="AddCar" class="dropdown-item notify-item">
                         Araç Girişi
                     </a>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a asp-controller="AdminBrand" asp-action="AddBrand" class="dropdown-item notify-item">
                         Yeni Marka Girişi
                     </a>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        Rezervasyonlar
+                    <a asp-controller="AdminReservation" asp-action="AddReservation" class="dropdown-item notify-item">
+                        Yeni Rezervasyon Girişi
                     </a>
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        Siteye Git
+                    <a asp-controller="AdminFeature" asp-action="AddFeature" class="dropdown-item notify-item">
+                        Yeni Özellik Girişi
+                    </a>
+                    <a asp-area="Admin" asp-controller="AdminServices" asp-action="CreateService" class="dropdown-item notify-item">
+                        Yeni Servis Girişi
+                    </a>
+                    <a asp-area="Admin" asp-controller="AdminTestimonial" asp-action="CreateTestimonial" class="dropdown-item notify-item">
+                        Yeni Referans Girişi
                     </a>
                 </div>
             </div>
@@ -59,41 +64,6 @@
                     </form>
                 </div>
             </div>
-
-            <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="" src="~/Admin/vertical/assets/images/flags/us.jpg" alt="Header Language" height="16">
-                    <span class="d-none d-sm-inline-block ml-1">English</span>
-                    <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="~/Admin/vertical/assets/images/flags/spain.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">İspanyolca</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="~/Admin/vertical/assets/images/flags/germany.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Almanca</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="~/Admin/vertical/assets/images/flags/italy.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">İtalyanca</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="~/Admin/vertical/assets/images/flags/russia.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>
-                    </a>
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="~/Admin/vertical/assets/images/flags/turkey.png" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Türkçe</span>
-                    </a>
-                </div>
-            </div>
-
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon" id="page-header-notifications-dropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -161,7 +131,7 @@
             <div class="dropdown d-inline-block ml-2">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="~/Admin/vertical/assets/images/users/avatar-3.jpg"
+                    <img class="rounded-circle header-profile-user" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"
                          alt="Header Avatar">
                     <span class="d-none d-sm-inline-block ml-1">Admin</span>
                     <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>

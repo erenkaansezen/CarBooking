@@ -4,10 +4,11 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/UILayout/Index.cshtml";
 }
-@await Component.InvokeAsync("_DefaultBannerComponentPartial")
 
 <section class="ftco-section bg-gradient">
     <div class="container">
+        @await Component.InvokeAsync("_DefaultBannerComponentPartial", new { id = ViewBag.carid })
+
         <div class="row">
             @foreach (var item in Model)
             {
@@ -21,7 +22,7 @@
                                 <span class="cat" style="color:white">@item.Brand</span>
                                 <p class="price ml-auto" style="color:white">000<span style="color:white">/Günlük</span></p>
                             </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-dark py-2 mr-1">Kirala</a> <a href="car-single.html" class="btn btn-dark py-2 ml-1">Detaylar</a></p>
+                            <p class="d-flex mb-0 d-block"><a href="/Reservation/Index/@item.carID" class="btn btn-dark py-2 mr-1">Kirala</a> <a href="car-single.html" class="btn btn-dark py-2 ml-1">Detaylar</a></p>
                         </div>
                     </div>
                 </div>

@@ -14,6 +14,8 @@ namespace Web.Persistence.Context
         {
             optionsBuilder.UseSqlServer("Server=Sezen;initial Catalog=WebSezenCoRentACarDatabase;integrated Security=true;TrustServerCertificate=True");
         }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Brand> Brands { get; set; }
@@ -32,6 +34,7 @@ namespace Web.Persistence.Context
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<RentACar> RentACars { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

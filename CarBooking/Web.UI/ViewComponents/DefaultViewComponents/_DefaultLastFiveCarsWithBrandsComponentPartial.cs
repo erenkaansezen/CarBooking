@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Web.Dto.CarDtos;
+using Web.Dto.CarPricingDtos;
 using Web.Dto.TestimonialDtos;
 
 namespace Web.UI.ViewComponents.DefaultViewComponents
@@ -17,11 +18,11 @@ namespace Web.UI.ViewComponents.DefaultViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7245/api/Cars/GetCarFiveWithBrand");
+            var response = await client.GetAsync("https://localhost:7245/api/CarPricing");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCarWithBrandsDtos>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultCarPricingDto>>(jsonData);
                 return View(values);
             }
             return View();

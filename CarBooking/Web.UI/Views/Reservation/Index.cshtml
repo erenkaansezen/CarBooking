@@ -9,7 +9,7 @@
         <h3 class="aler alert-dark">Araç Rezervasyon Formu</h3>
         <br />
         <div class="form-group">
-            <input type="text" class="form-control" value="@ViewBag.carid" asp-for="CarID" placeholder="Almak İstediğiniz araba">
+            <input type="hidden" class="form-control" value="@ViewBag.carid" asp-for="CarID" placeholder="Almak İstediğiniz araba">
         </div>
         <div class="form-group">
             <input type="text" class="form-control" asp-for="Name" placeholder="Adınız" >
@@ -46,7 +46,7 @@
             <textarea asp-for="Description" id="" cols="30" rows="7" class="form-control" placeholder="İletmek istediğiniz mesaj"></textarea>
         </div>
         <div class="form-group">
-            <input type="submit" value="Rezervasyonu Tamamla" class="btn btn-primary py-3 px-5">
+            <input type="submit" value="Rezervasyonu Tamamla" class="btn btn-dark py-3 px-5">
         </div>
     </form>
 

@@ -1,4 +1,6 @@
-﻿using Application.Features.CQRS.Handlers.AboutHandlers;
+﻿using System.Reflection;
+using System.Text;
+using Application.Features.CQRS.Handlers.AboutHandlers;
 using Application.Features.CQRS.Handlers.BannerHandlers;
 using Application.Features.CQRS.Handlers.BrandHandlers;
 using Application.Features.CQRS.Handlers.CarHandlers;
@@ -9,8 +11,14 @@ using Application.Interfaces.CarFeatureInterfaces;
 using Application.Interfaces.CarInterfaces;
 using Application.Interfaces.CarPricingInterfaces;
 using Application.Interfaces.RentACarInterfaces;
+using Application.Interfaces.ReservationInterfaces;
+using Application.Interfaces.RewiewInterfaces;
 using Application.Interfaces.StatisticsInterfaces;
 using Application.Services;
+using Application.Tools;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Web.Domain.Entities;
 using Web.Persistence.Context;
 using Web.Persistence.Repositories;
@@ -18,9 +26,24 @@ using Web.Persistence.Repositories.CarFeatureRepositories;
 using Web.Persistence.Repositories.CarPricingRepositories;
 using Web.Persistence.Repositories.CarRepositories;
 using Web.Persistence.Repositories.RentACarRepositories;
+using Web.Persistence.Repositories.ReservationRepositories;
+using Web.Persistence.Repositories.RewiewRepositories;
 using Web.Persistence.Repositories.StatisticsRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.RequireHttpsMetadata = false;
+    opt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidAudience = JwtTokenDefault.ValidAudience,
+        ValidIssuer = JwtTokenDefault.ValidIssuer,
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefault.Key)),
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true
+    };
+});
 
 // Add services to the container
 builder.Services.AddScoped<WebContext>();
@@ -30,6 +53,8 @@ builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepos
 builder.Services.AddScoped(typeof(IStatisticsRepository), typeof(StatisticsRepository));
 builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepository));
 builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatueRepository));
+builder.Services.AddScoped(typeof(IReservationRepository), typeof(ReservationRepository));
+builder.Services.AddScoped(typeof(IReviewRepository), typeof(RewiewRepository));
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
@@ -71,6 +96,10 @@ builder.Services.AddScoped<RemoveContactCommandHandler>();
 
 builder.Services.AddApplicationServices(builder.Configuration);
 
+builder.Services.AddControllers().AddFluentValidation(x =>
+{
+    x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
 builder.Services.AddControllers();
 
 // Swagger servisleri
@@ -93,7 +122,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

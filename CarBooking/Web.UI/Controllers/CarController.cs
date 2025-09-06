@@ -27,5 +27,10 @@ namespace Web.UI.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> CarDetail(int id)
+        {
+            ViewBag.carid = id;
+            return View();
+        }
     }
 }

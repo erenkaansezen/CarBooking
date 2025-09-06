@@ -23,23 +23,15 @@
                                 <span class="cat" style="color:white">@item.Brand</span>
                                 <p class="price ml-auto" style="color:white">@item.Amount <span style ="color:white">/Günlük</span></p>
                             </div>
-                            <p class="d-flex mb-0 d-block"><a href="/Reservation/Index/@item.CarId" class="btn btn-dark py-2 mr-1">Kirala</a> <a href="car-single.html" class="btn btn-dark py-2 ml-1">Detaylar</a></p>
+                            <p class="d-flex mb-0 d-block">
+                                <a href="/Reservation/Index/@item.CarId" class="btn btn-dark py-2 mr-1">Kirala</a>
+                                <a href="/Car/CarDetail/@item.CarId" class="btn btn-dark py-2 ml-1">Detaylar</a>
+                            </p>
                         </div>
                     </div>
                 </div>
             }
 
-        </div>
-        <div class="row mt-5">
-            <div class="col text-center">
-                <div class="block-27">
-                    <ul>
-                        <li><a href="#">&lt;</a></li>
-                        <li class="active"><span>1</span></li>
-                        <li><a href="#">2</a></li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </section>
